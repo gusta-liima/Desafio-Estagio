@@ -29,9 +29,9 @@ jobs:
       
       - name: Run script with input files
         run: |
-          python __main__.py input1.txt output1.txt
-          python __main__.py input2.txt output2.txt
-          python __main__.py input3.txt output3.txt
+          python Códigos/__main__.py Códigos/input1.txt Códigos/output1.txt
+          python Códigos/__main__.py Códigos/input2.txt Códigos/output2.txt
+          python Códigos/__main__.py Códigos/input3.txt Códigos/output3.txt
       
       - name: Upload output files as artifacts
         uses: actions/upload-artifact@v3
