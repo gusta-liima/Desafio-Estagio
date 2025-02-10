@@ -1,43 +1,36 @@
-name: Run Tests and Lint
+name: Run Tests with Input Files
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
   test:
-    name: Run Tests with Input Files
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-      
+        uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
-      
-      - name: Create input files
+          python-version: "3.10"
+
+      - name: Install dependencies
         run: |
-          echo -e "10\n20\n30\n10\n40" > input1.txt
-          echo -e "5\n15\n25\n5\n35" > input2.txt
-          echo -e "7\n14\n21\n7\n28" > input3.txt
-      
+          python -m pip install --upgrade pip
+          pip install black flake8
+
       - name: Run script with input files
         run: |
           python Códigos/__main__.py Códigos/input1.txt Códigos/output1.txt
           python Códigos/__main__.py Códigos/input2.txt Códigos/output2.txt
           python Códigos/__main__.py Códigos/input3.txt Códigos/output3.txt
-      
+
       - name: Upload output files as artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # ATUALIZADO PARA v4
         with:
           name: output-files
-          path: output*.txt
+          path: Códigos/output*.txt
 
   lint:
     name: Run Black and Flake8
