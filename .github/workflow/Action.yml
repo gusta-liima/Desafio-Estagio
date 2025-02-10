@@ -1,0 +1,62 @@
+name: Run Tests and Lint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run Tests with Input Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      
+      - name: Create input files
+        run: |
+          echo -e "10\n20\n30\n10\n40" > input1.txt
+          echo -e "5\n15\n25\n5\n35" > input2.txt
+          echo -e "7\n14\n21\n7\n28" > input3.txt
+      
+      - name: Run script with input files
+        run: |
+          python __main__.py input1.txt output1.txt
+          python __main__.py input2.txt output2.txt
+          python __main__.py input3.txt output3.txt
+      
+      - name: Upload output files as artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-files
+          path: output*.txt
+
+  lint:
+    name: Run Black and Flake8
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      
+      - name: Install dependencies
+        run: |
+          pip install black flake8
+      
+      - name: Run Black
+        run: black --check .
+      
+      - name: Run Flake8
+        run: flake8 .
