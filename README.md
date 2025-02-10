@@ -6,4 +6,4 @@ Este projeto implementa uma estrutura de dados baseada em **tabela hash** para p
 ## Estrutura do Projeto
 - [_main_.py](Códigos/__main__.py): Arquivo principal que executa a lógica do programa.
 - [my_structure.py](Códigos/my_structure.py): Implementação da tabela hash.
-- [actions.yml](.github/workflow/Action.yml): Configuração para testes e verificação de código automática.
+- [actions.yml](.github/workflows/main.yml): Configuração para testes e verificação de código automática.
