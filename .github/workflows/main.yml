@@ -27,7 +27,7 @@ jobs:
           python Códigos/__main__.py Códigos/input3.txt Códigos/output3.txt
 
       - name: Upload output files as artifacts
-        uses: actions/upload-artifact@v4  # ATUALIZADO PARA v4
+        uses: actions/upload-artifact@v4 
         with:
           name: output-files
           path: Códigos/output*.txt

@@ -36,4 +36,4 @@ if __name__ == "__main__":
 
     process_file(
         input_file, output_file
-    )  # Chama a função principal passando os arquivos
+    )
