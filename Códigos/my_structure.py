@@ -6,14 +6,16 @@ class HashTable:
     def __init__(self, size=1000):
         """
         Inicializa a tabela hash com um tamanho padrão de 1000.
-        A tabela é representada como uma lista de listas (para lidar com colisões).
+        A tabela é representada como uma lista de listas
+        (para lidar com colisões).
         """
         self.size = size
         self.table = [[] for _ in range(size)]
 
     def _hash(self, key):
         """
-        Função de hash simples: usa o operador de módulo para distribuir chaves.
+        Função de hash simples:
+        usa o operador de módulo para distribuir chaves.
         Retorna o índice na tabela hash.
         """
         return key % self.size
