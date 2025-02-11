@@ -26,8 +26,11 @@ class HashTable:
         Somente insere se o número ainda não estiver presente no seu índice.
         """
         index = self._hash(key)
-        if key not in self.table[index]:
-            self.table[index].append(key)
+        row = self.table[index]
+        for i in range(len(row)):
+            if row[i] == key:
+                return
+        self.table[index].append(key)
 
     def contains(self, key):
         """
